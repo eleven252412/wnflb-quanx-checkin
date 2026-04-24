@@ -10,6 +10,7 @@ const CONFIG = {
   cookieKey: 'wnflb_cookie',
   captureNotifyKey: 'wnflb_cookie_last_notify',
   captureDailySeenKey: 'wnflb_cookie_daily_seen',
+  captureMissNotifyKey: 'wnflb_cookie_miss_daily_seen',
   captureNotifyCooldownMs: 15000,
   login: {
     username: '',
@@ -283,6 +284,16 @@ function shouldNotifyDailyCookieSeen() {
   return true;
 }
 
+function shouldNotifyDailyCaptureMiss() {
+  const today = new Date().toISOString().slice(0, 10);
+  const last = $prefs.valueForKey(CONFIG.captureMissNotifyKey) || '';
+  if (last === today) {
+    return false;
+  }
+  $prefs.setValueForKey(today, CONFIG.captureMissNotifyKey);
+  return true;
+}
+
 function extractUsefulCookie(rawCookie) {
   const jar = parseCookieString(rawCookie);
   const picked = new Map();
@@ -339,6 +350,9 @@ function captureCookieMode() {
   const rawCookie = getHeader(req.headers, 'cookie') || '';
   const usefulCookie = extractUsefulCookie(rawCookie);
   if (!usefulCookie || !hasLoginCookie(usefulCookie)) {
+    if (shouldNotifyDailyCaptureMiss()) {
+      notify('福利吧 Cookie 抓取', '未拿到完整登录态', '脚本已命中，但当前这个页面请求里没有识别到完整登录 cookie，请确认是在已登录状态下打开论坛页面');
+    }
     $done({});
     return true;
   }
