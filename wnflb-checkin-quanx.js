@@ -287,15 +287,26 @@ function extractUsefulCookie(rawCookie) {
   const jar = parseCookieString(rawCookie);
   const picked = new Map();
   for (const [name, value] of jar.entries()) {
-    if (
-      name === 'server_name_session' ||
-      name === 'X_CACHE_KEY' ||
-      /^S[0-9A-Za-z]+_/.test(name)
-    ) {
-      picked.set(name, value);
-    }
+    if (!name || !value) continue;
+    // 福利吧这里不再只保留少数几个 cookie，避免不同 Discuz 变种命名导致抓取静默失败
+    picked.set(name, value);
   }
   return stringifyCookieJar(picked);
+}
+
+function hasLoginCookie(cookie) {
+  const jar = parseCookieString(cookie);
+  const names = Array.from(jar.keys()).map((x) => String(x).toLowerCase());
+  return names.some((name) =>
+    name.includes('auth') ||
+    name.includes('login') ||
+    name.includes('member') ||
+    name.includes('uid') ||
+    name.includes('user') ||
+    name.includes('saltkey') ||
+    name.includes('sid') ||
+    /^s[0-9a-z]+_/.test(name)
+  );
 }
 
 function captureCookieMode() {
@@ -327,7 +338,7 @@ function captureCookieMode() {
 
   const rawCookie = getHeader(req.headers, 'cookie') || '';
   const usefulCookie = extractUsefulCookie(rawCookie);
-  if (!usefulCookie || !/_auth=/.test(usefulCookie)) {
+  if (!usefulCookie || !hasLoginCookie(usefulCookie)) {
     $done({});
     return true;
   }
@@ -389,7 +400,10 @@ async function loginWithPassword(state, base) {
 }
 
 async function main() {
-  if (captureCookieMode()) return;
+  if (typeof $request !== 'undefined') {
+    captureCookieMode();
+    return;
+  }
 
   const storedCookie = readCookieStore();
   if (!storedCookie) {
