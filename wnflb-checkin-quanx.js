@@ -9,6 +9,7 @@ const CONFIG = {
   timeout: 20000,
   cookieKey: 'wnflb_cookie',
   captureNotifyKey: 'wnflb_cookie_last_notify',
+  captureDailySeenKey: 'wnflb_cookie_daily_seen',
   captureNotifyCooldownMs: 15000,
   login: {
     username: '',
@@ -272,6 +273,16 @@ function shouldNotifyCapture() {
   return true;
 }
 
+function shouldNotifyDailyCookieSeen() {
+  const today = new Date().toISOString().slice(0, 10);
+  const last = $prefs.valueForKey(CONFIG.captureDailySeenKey) || '';
+  if (last === today) {
+    return false;
+  }
+  $prefs.setValueForKey(today, CONFIG.captureDailySeenKey);
+  return true;
+}
+
 function extractUsefulCookie(rawCookie) {
   const jar = parseCookieString(rawCookie);
   const picked = new Map();
@@ -323,6 +334,8 @@ function captureCookieMode() {
   const changed = saveCookieStore(usefulCookie);
   if (changed && shouldNotifyCapture()) {
     notify('福利吧 Cookie 抓取', '成功', '已保存到 QuanX 本地存档');
+  } else if (!changed && shouldNotifyDailyCookieSeen()) {
+    notify('福利吧 Cookie 状态', '仍有效', '本地 cookie 未变化，今天已确认仍可读取');
   }
   $done({});
   return true;
