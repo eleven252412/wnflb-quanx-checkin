@@ -36,12 +36,12 @@
 
 ## 一键导入
 ### QuanX 真正一键导入（推荐）
-- 福利吧：`quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import.conf,tag=%E7%A6%8F%E5%88%A9%E5%90%A7%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
-- 福利吧 + 6SQ：`quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf,tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
+### 合并导入（福利吧 + 6SQ + 哈士奇）
+- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf,tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%2B%E5%93%88%E5%A3%AB%E5%A5%87%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
 
 ### 原始配置文件链接
 - 福利吧：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import.conf`
-- 福利吧 + 6SQ：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
+- 福利吧 + 6SQ + 哈士奇：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
 
 ## QuanX 配置
 下面已经直接写成可用 raw 链接。
