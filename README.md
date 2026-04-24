@@ -33,18 +33,18 @@
 5. 如果 cookie 失效，并且你填了账号密码 + 安全问题答案，就自动登录后再签到
 
 ## QuanX 配置
-把下面的 `RAW_SCRIPT_URL` 替换成你自己的 raw 链接。
+下面已经直接写成可用 raw 链接。
 
 ### rewrite_local
 ```ini
 [rewrite_local]
-^https?:\/\/www\.wnflb(2023|00|99)\.com\/(forum\.php.*|member\.php.*|plugin\.php.*|$) url script-request-header RAW_SCRIPT_URL
+^https?:\/\/www\.wnflb(2023|00|99)\.com\/(forum\.php.*|member\.php.*|plugin\.php.*|$) url script-request-header https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/wnflb-checkin-quanx.js
 ```
 
 ### task_local
 ```ini
 [task_local]
-0 5 * * * RAW_SCRIPT_URL, tag=福利吧签到, enabled=true
+0 5 * * * https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/wnflb-checkin-quanx.js, tag=福利吧签到, enabled=true
 ```
 
 ## 首次使用步骤
