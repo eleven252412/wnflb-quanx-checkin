@@ -327,7 +327,7 @@ function captureCookieMode() {
   }
   const url = req.url || '';
   const host = url.match(/^https?:\/\/([^/]+)/i);
-  if (!host || !/wnflb(2023|00|99)\.com$/i.test(host[1])) {
+  if (!host || !/^(www\.)?wnflb(2023|00|99)\.com$/i.test(host[1])) {
     return false;
   }
 
@@ -336,7 +336,8 @@ function captureCookieMode() {
     path === '/' ||
     path.startsWith('/forum.php') ||
     path.startsWith('/member.php') ||
-    path.startsWith('/plugin.php')
+    path.startsWith('/plugin.php') ||
+    path.startsWith('/guide.php')
   );
   if (!isCapturePage) {
     return false;

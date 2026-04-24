@@ -49,7 +49,7 @@
 ### rewrite_local
 ```ini
 [rewrite_local]
-^https?:\/\/www\.wnflb(2023|00|99)\.com\/(forum\.php.*|member\.php.*|plugin\.php.*|$) url script-request-header https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/wnflb-checkin-quanx.js
+^https?:\/\/(www\.)?wnflb(2023|00|99)\.com\/(forum\.php.*|member\.php.*|plugin\.php.*|guide\.php.*|$) url script-request-header https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/wnflb-checkin-quanx.js
 ```
 
 ### task_local
