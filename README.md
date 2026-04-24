@@ -32,6 +32,13 @@
 4. 自动签到
 5. 如果 cookie 失效，并且你填了账号密码 + 安全问题答案，就自动登录后再签到
 
+## 一键导入
+### 单独导入（福利吧）
+- `https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import.conf`
+
+### 合并导入（福利吧 + 6SQ）
+- `https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
+
 ## QuanX 配置
 下面已经直接写成可用 raw 链接。
 
