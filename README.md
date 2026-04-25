@@ -36,12 +36,13 @@
 
 ## 一键导入
 ### QuanX 真正一键导入（推荐）
-### 合并导入（福利吧 + 6SQ + 哈士奇）
-- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf&tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%2B%E5%93%88%E5%A3%AB%E5%A5%87%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
+### 合并导入（福利吧 + 6SQ + 哈士奇 + 移动营业厅）
+- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf&tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%2B%E5%93%88%E5%A3%AB%E5%A5%87%2B%E7%A7%BB%E5%8A%A8%E8%90%A5%E4%B8%9A%E5%8E%85%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
 
 ### 原始配置文件链接
 - 福利吧：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import.conf`
-- 福利吧 + 6SQ + 哈士奇：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
+- 福利吧 + 6SQ + 哈士奇 + 移动营业厅：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
+- 移动营业厅单站：`https://raw.githubusercontent.com/eleven252412/cmcc-app-checkin-quanx/main/quanx-import.conf`
 
 ## QuanX 配置
 下面已经直接写成可用 raw 链接。
@@ -123,3 +124,6 @@ login: {
 - 增加只在相关页面抓取、cookie 变化才提示、15 秒防抖，避免反复弹窗。
 - 当 cookie 未变化时，新增“每天最多提示一次仍有效”提醒，避免误以为没抓到。
 - 保留多域名兜底、自动签到、可选账号密码兜底登录逻辑。
+
+### 2026-04-26
+- 聚合导入新增移动营业厅签到。移动营业厅脚本已确认真实签到接口为 `POST /qwhdhub/api/mark/mark31/domark`，body 为 `{"date":"YYYYMMDD"}`。
