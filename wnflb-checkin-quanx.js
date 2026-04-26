@@ -241,13 +241,34 @@ function parseInputValue(html, name) {
   return match ? htmlDecode(match[1]) : '';
 }
 
+function extractFirstNumber(text, patterns) {
+  const raw = String(text || '');
+  for (const pattern of patterns) {
+    const match = raw.match(pattern);
+    if (match && match[1] !== undefined) return match[1];
+  }
+  return '';
+}
+
+function buildMinimalSuccessText(credit, signInfo) {
+  const todayPoint = extractFirstNumber(signInfo, [
+    /(?:今日|今天)?(?:获得|获取|奖励|增加|新增)[^0-9+-]*([+-]?\d+)/i,
+    /([+-]?\d+)\s*(?:积分|金币|威望|经验)/i
+  ]) || '未知';
+  const totalPoint = extractFirstNumber(credit, [
+    /(?:总积分|积分|金币|威望|经验)[^0-9]*([0-9]+)/i,
+    /([0-9]+)\s*(?:积分|金币|威望|经验)/i
+  ]) || '未知';
+  return `签到成功 | 今日获取${todayPoint}积分 | 总积分${totalPoint}`;
+}
+
 function buildNotifyText(status, username, base, credit, signInfo) {
+  if (status === 'success' || status === 'already') {
+    return buildMinimalSuccessText(credit, signInfo);
+  }
+
   const lines = [];
-  if (status === 'success') {
-    lines.push(`签到成功：${username}`);
-  } else if (status === 'already') {
-    lines.push(`今天已签：${username}`);
-  } else if (status === 'cookie_invalid') {
+  if (status === 'cookie_invalid') {
     lines.push(`签到失败（登录态失效）：${username}`);
   } else if (status === 'sign_url_not_found') {
     lines.push(`签到失败（入口变化）：${username}`);
@@ -453,7 +474,7 @@ async function main() {
   const info = extractCreditAndSignInfo(latestForumHtml);
   const resultUser = username || CONFIG.login.username || 'unknown';
   const summary = buildNotifyText(result.status, resultUser, base, info.credit, info.signInfo);
-  const subtitle = result.status === 'success' ? '成功' : result.status === 'already' ? '已签到' : '异常';
+  const subtitle = (result.status === 'success' || result.status === 'already') ? '签到成功' : '异常';
 
   console.log(`RESULT: ${result.status.toUpperCase()}`);
   console.log(`BASE: ${base}`);
