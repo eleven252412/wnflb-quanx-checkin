@@ -119,5 +119,8 @@ login: {
 - 当 cookie 未变化时，新增“每天最多提示一次仍有效”提醒，避免误以为没抓到。
 - 保留多域名兜底、自动签到、可选账号密码兜底登录逻辑。
 
+### 2026-04-29
+- 聚合导入里的移动营业厅新增 `script-response-header`，同步保存 `Set-Cookie` 轮换后的 QWHD 会话，避免定时任务继续用旧 Cookie。
+
 ### 2026-04-26
 - 聚合导入新增移动营业厅签到。移动营业厅脚本已确认真实签到接口为 `POST /qwhdhub/api/mark/mark31/domark`，body 为 `{"date":"YYYYMMDD"}`。
