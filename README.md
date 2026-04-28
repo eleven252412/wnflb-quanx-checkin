@@ -121,6 +121,7 @@ login: {
 
 ### 2026-04-29
 - 聚合导入里的移动营业厅新增 `script-response-header`，同步保存 `Set-Cookie` 轮换后的 QWHD 会话，避免定时任务继续用旧 Cookie。
+- 移动营业厅脚本过滤 `gdp/gio` 埋点 Cookie，避免每次打开 APP 都触发无意义变化提示；请求抓取不再因为当前请求缺少 `yx` 而覆盖掉本地有效 `yx`。
 
 ### 2026-04-26
 - 聚合导入新增移动营业厅签到。移动营业厅脚本已确认真实签到接口为 `POST /qwhdhub/api/mark/mark31/domark`，body 为 `{"date":"YYYYMMDD"}`。
