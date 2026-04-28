@@ -259,7 +259,7 @@ function buildMinimalSuccessText(credit, signInfo) {
     /(?:总积分|积分|金币|威望|经验)[^0-9]*([0-9]+)/i,
     /([0-9]+)\s*(?:积分|金币|威望|经验)/i
   ]) || '未知';
-  return `签到成功 | 今日获取${todayPoint}积分 | 总积分${totalPoint}`;
+  return `签到成功 | ${todayPoint} | ${totalPoint}`;
 }
 
 function buildNotifyText(status, username, base, credit, signInfo) {
