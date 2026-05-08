@@ -2,16 +2,25 @@
 
 福利吧论坛自动签到的 **Quantumult X 专用版**。
 
-这个版本已经优化成：
+这个仓库当前包含：
+- **福利吧签到脚本**：`wnflb-checkin-quanx.js`
+- **GLaDOS / Railgun 签到脚本**：`glados-railgun-checkin-quanx.js`
+- **聚合导入配置**：`quanx-import-all.conf`
+
+共同特点：
 - **脚本里不写死明文 cookie**
 - **网页登录 / 打开页面时，QuanX 自动抓取 cookie**
 - cookie 只保存在 **QuanX 本地存档**
 - 定时签到脚本只读取本地 cookie
-- 保留 **可选账号密码兜底登录**（默认留空）
-- 支持多域名兜底：`wnflb2023.com` / `wnflb00.com` / `wnflb99.com`
+- 福利吧保留 **可选账号密码兜底登录**（默认留空）
+- 福利吧支持多域名兜底：`wnflb2023.com` / `wnflb00.com` / `wnflb99.com`
+- GLaDOS 兼容：`glados.cloud` / `railgun.info`
 
 ## 文件
 - `wnflb-checkin-quanx.js`
+- `glados-railgun-checkin-quanx.js`
+- `quanx-import-glados.conf`
+- `quanx-import-all.conf`
 
 ## 工作方式
 这个脚本有两种模式：
@@ -36,12 +45,16 @@
 
 ## 一键导入
 ### QuanX 真正一键导入（推荐）
-### 合并导入（福利吧 + 6SQ + 哈士奇 + 移动营业厅）
-- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf&tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%2B%E5%93%88%E5%A3%AB%E5%A5%87%2B%E7%A7%BB%E5%8A%A8%E8%90%A5%E4%B8%9A%E5%8E%85%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
+### 合并导入（福利吧 + 6SQ + 哈士奇 + 移动营业厅 + GLaDOS / Railgun）
+- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf&tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%2B%E5%93%88%E5%A3%AB%E5%A5%87%2B%E7%A7%BB%E5%8A%A8%E8%90%A5%E4%B8%9A%E5%8E%85%2BGLaDOS&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
+
+### GLaDOS / Railgun 单站导入
+- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-glados.conf&tag=GLaDOS%20%2F%20Railgun%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
 
 ### 原始配置文件链接
 - 福利吧：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import.conf`
-- 福利吧 + 6SQ + 哈士奇 + 移动营业厅：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
+- 福利吧 + 6SQ + 哈士奇 + 移动营业厅 + GLaDOS / Railgun：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
+- GLaDOS / Railgun：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-glados.conf`
 - 移动营业厅单站：`https://raw.githubusercontent.com/eleven252412/cmcc-app-checkin-quanx/main/quanx-import.conf`
 
 ## QuanX 配置
@@ -111,6 +124,12 @@ login: {
    - `fx_checkin` 签到入口正则
 
 ## 更新记录
+### 2026-05-08 16:00:40 CST
+- 新增 `glados-railgun-checkin-quanx.js`，把 GLaDOS / Railgun GitHub Actions 版重写成 Quantumult X 自动抓 Cookie + 定时签到版。
+- 新增 `quanx-import-glados.conf`，支持单独导入 GLaDOS / Railgun。
+- 更新 `quanx-import-all.conf`，把 GLaDOS / Railgun 加入之前的聚合订阅。
+- 聚合导入补充 `glados.cloud` / `railgun.info` 的 `script-request-header`、`script-response-header` 和 MITM hostname。
+
 ### 2026-04-24
 - 改为 QuanX 自动抓 cookie + 本地存档模式。
 - 去掉脚本内明文 cookie 与账号密码默认值。
