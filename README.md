@@ -124,6 +124,10 @@ login: {
    - `fx_checkin` 签到入口正则
 
 ## 更新记录
+### 2026-05-08 18:03:24 CST
+- 更新聚合导入里的移动营业厅脚本版本参数到 `v=20260508-no-volatile-x-headers`，让聚合订阅同步吃到新的移动签到修复。
+- 移动营业厅修复点：不再复用 APP 临时生成的 `x-sign` / `x-time` / `x-nonce` / `x-token` 等动态签名头，并支持从响应 `Location` 保存新的 `qwhdmark` token URL。
+
 ### 2026-05-08 16:00:40 CST
 - 新增 `glados-railgun-checkin-quanx.js`，把 GLaDOS / Railgun GitHub Actions 版重写成 Quantumult X 自动抓 Cookie + 定时签到版。
 - 新增 `quanx-import-glados.conf`，支持单独导入 GLaDOS / Railgun。
