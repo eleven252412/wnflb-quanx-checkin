@@ -45,17 +45,16 @@
 
 ## 一键导入
 ### QuanX 真正一键导入（推荐）
-### 合并导入（福利吧 + 6SQ + 哈士奇 + 移动营业厅 + GLaDOS / Railgun）
-- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf&tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%2B%E5%93%88%E5%A3%AB%E5%A5%87%2B%E7%A7%BB%E5%8A%A8%E8%90%A5%E4%B8%9A%E5%8E%85%2BGLaDOS&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
+### 合并导入（福利吧 + 6SQ + 哈士奇 + GLaDOS / Railgun）
+- `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-all.conf&tag=%E7%A6%8F%E5%88%A9%E5%90%A7%2B6SQ%2B%E5%93%88%E5%A3%AB%E5%A5%87%2BGLaDOS&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
 
 ### GLaDOS / Railgun 单站导入
 - `quantumult-x:///add-resource?remote-resource=https%3A%2F%2Fraw.githubusercontent.com%2Feleven252412%2Fwnflb-quanx-checkin%2Fmain%2Fquanx-import-glados.conf&tag=GLaDOS%20%2F%20Railgun%E7%AD%BE%E5%88%B0&img-url=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2Fmain%2Ftopics%2Fquantumult-x%2Fquantumult-x.png`
 
 ### 原始配置文件链接
 - 福利吧：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import.conf`
-- 福利吧 + 6SQ + 哈士奇 + 移动营业厅 + GLaDOS / Railgun：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
+- 福利吧 + 6SQ + 哈士奇 + GLaDOS / Railgun：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-all.conf`
 - GLaDOS / Railgun：`https://raw.githubusercontent.com/eleven252412/wnflb-quanx-checkin/main/quanx-import-glados.conf`
-- 移动营业厅单站：`https://raw.githubusercontent.com/eleven252412/cmcc-app-checkin-quanx/main/quanx-import.conf`
 
 ## QuanX 配置
 下面已经直接写成可用 raw 链接。
@@ -124,6 +123,10 @@ login: {
    - `fx_checkin` 签到入口正则
 
 ## 更新记录
+### 2026-05-09 17:28:44 CST
+- 应需求将聚合导入里的“移动营业厅签到”彻底移除：删除 `quanx-import-all.conf` 中的中国移动 `rewrite_local`、定时任务和 `wx.10086.cn` MITM 主机名。
+- 同步更新 README 的聚合导入文案与聚合链接标签，不再把移动营业厅列入聚合订阅，也移除移动营业厅单站 raw 链接说明。
+
 ### 2026-05-08 18:03:24 CST
 - 更新聚合导入里的移动营业厅脚本版本参数到 `v=20260508-no-volatile-x-headers`，让聚合订阅同步吃到新的移动签到修复。
 - 移动营业厅修复点：不再复用 APP 临时生成的 `x-sign` / `x-time` / `x-nonce` / `x-token` 等动态签名头，并支持从响应 `Location` 保存新的 `qwhdmark` token URL。
@@ -152,4 +155,4 @@ login: {
 - 移动营业厅成功通知改为 `签到成功 | 当月签到次数X`；`accumulateTimes` 是当月累计签到次数，不是积分。
 
 ### 2026-04-26
-- 聚合导入新增移动营业厅签到。移动营业厅脚本已确认真实签到接口为 `POST /qwhdhub/api/mark/mark31/domark`，body 为 `{"date":"YYYYMMDD"}`。
+- 聚合导入曾新增移动营业厅签到；现已于 2026-05-09 按需求移除，不再包含在聚合订阅中。
